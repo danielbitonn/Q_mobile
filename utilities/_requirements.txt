@@ -1,34 +1,66 @@
-# Basic packages
-numpy
-pandas
-scipy
-
-# System
-ipython-autotime
-watermark
-requests
-datetime
-beeprint
-
-# Files
-xlrd
-openpyxl
-jellyfish
-
-# EDA
-sweetviz
-seaborn
-matplotlib
-plotly
-plotly.express
-scienceplots
-
-# ML
-scikit-learn
-sklearn
-imblearn
-
-# NN
-openai
-transformers
-nltk
+# Basic packages
+
+numpy
+
+pandas
+
+scipy
+
+
+
+# System
+
+ipython-autotime
+
+watermark
+
+requests
+
+datetime
+
+beeprint
+
+
+
+# Files
+
+xlrd
+
+openpyxl
+
+jellyfish
+
+
+
+# EDA
+
+sweetviz
+
+seaborn
+
+matplotlib
+
+plotly
+
+plotly.express
+
+scienceplots
+
+
+
+# ML
+
+sklearn
+
+imblearn
+
+
+
+# NN
+
+openai
+
+transformers
+
+nltk
+
