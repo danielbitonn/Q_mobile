@@ -1,10 +1,10 @@
 ################################################################################
 ################################################################################
 ################################################################################
+import yaml
+from yaml.loader import *
 
 def func_get_conf(key_data):
-    import yaml
-    from yaml.loader import *
     try:
         return yaml.load(open("utilities\_conf.yaml", 'r'), Loader=FullLoader)[key_data]
     except yaml.YAMLError as e:
