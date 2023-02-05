@@ -1,0 +1,19 @@
+### CONST PARAM
+UTIL_DIR:                 "_utilities"
+TS_MAX_TOKENS:            1900
+TS_SIMILARITY:            0.9
+TS_SMALL_SECTIONS_TOKENS: 40
+
+### GPT
+  # KEYs
+KEY:  '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'   #Demo key
+
+  # Models
+GPT_CONV_SET_TO_QUES: "davinci"
+GPT_EMBD_Q_MODEL:     "text-embedding-ada-002"
+
+### JSON FILES HANDLING
+AUTO_RUN_JSON: True
+AUTO_JSON_FIELDS:
+  "controls.json": ['_id', 'displayName', 'description']
+  "policies.json": ['_id',  'title',      'html']
