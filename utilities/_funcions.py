@@ -18,7 +18,7 @@ class Environment:
           self.IN_COLAB = False
           self.PATH = ""
         
-        with open('utilities\_conf.yaml', "r") as stream:
+        with open('utilities/_conf.yaml', "r") as stream:
             config = yaml.safe_load(stream)
         for key, value in config.items():
             os.environ[key] = str(value)
