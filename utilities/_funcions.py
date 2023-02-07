@@ -18,9 +18,7 @@ def __init__():
             'IN_COLAB': IN_COLAB,
             'df': df        
             }
-#     print('In G-colab environment? ', IN_COLAB, vars)
     
-    # Save the variables to a file
     with open("variables.pkl", "wb") as f:
         pickle.dump(locals(), f)
     
