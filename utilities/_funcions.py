@@ -1,5 +1,4 @@
-from utilities._import_alias import *
-# !python utilities._import_alias.py
+import pandas as pd
 
 class Environment:
     def __init__(self):   
