@@ -26,92 +26,93 @@ class ExplorDataAnaly:
                                        morning_start=6, morning_end=12,
                                        noon_start=12, noon_end=18, 
                                        evening_start=18, evening_end=22):
-    """
-    1. This function takes a data frame df and a column name date_time_col representing the date and time column. 
-    2. It also takes the start and end hours for: [morning, noon, evening, and night] 
-       default values: [6 for morning start, 12 for morning end, 12 for noon start, 18 for noon end, 18 for evening start, and 22 for evening end]
-       creates columns for morning, noon, evening, and night based on the hour of the day.
-    3. The function first cleans missing and illegal values by converting the column to a datetime type and removing any rows with missing values. 
-    4. Then extracts the [year, month, day, hour, weekday, and weekday] 
-       creates a weekday and weekend columns.  
-    5. column which represent the relative time due to the first timestamp of the data as point 0 then in flexible interval 
-       (for example: xx_H) continuously relative to time 0 intervals are:
-       ['xx_H'/'xx_M'/'xx_D'/'xx_W'/'xx_M' end so forth].
-    6. Insert timeStamp column
-    """
-    self.df             = df.copy()
-    self.interval       = interval
-    self.is_weekend     = is_weekend
-    self.date_time_col  = date_time_col
-    self.morning_start  = morning_start
-    self.morning_end    = morning_end
-    self.noon_start     = noon_start
-    self.noon_end       = noon_end
-    self.evening_start  = evening_start
-    self.evening_end    = evening_end
-    """
-    Note! 
-    You should define a variable as a self.var when it's an instance variable. 
-    Instance variables are variables that belong to an instance of a class, 
-    and they have different values for different instances of the same class.
-    In other words, if you have a class MyClass, and you create two instances of it, obj1 and obj2, 
-    each of these instances will have its own copy of the instance variables defined in the class. 
-    If you modify the value of an instance variable for one instance, 
-    it will not affect the value of the same variable for the other instance.
-    """
+        
+        """
+        1. This function takes a data frame df and a column name date_time_col representing the date and time column. 
+        2. It also takes the start and end hours for: [morning, noon, evening, and night] 
+           default values: [6 for morning start, 12 for morning end, 12 for noon start, 18 for noon end, 18 for evening start, and 22 for evening end]
+           creates columns for morning, noon, evening, and night based on the hour of the day.
+        3. The function first cleans missing and illegal values by converting the column to a datetime type and removing any rows with missing values. 
+        4. Then extracts the [year, month, day, hour, weekday, and weekday] 
+           creates a weekday and weekend columns.  
+        5. column which represent the relative time due to the first timestamp of the data as point 0 then in flexible interval 
+           (for example: xx_H) continuously relative to time 0 intervals are:
+           ['xx_H'/'xx_M'/'xx_D'/'xx_W'/'xx_M' end so forth].
+        6. Insert timeStamp column
+        """
+        self.df             = df.copy()
+        self.interval       = interval
+        self.is_weekend     = is_weekend
+        self.date_time_col  = date_time_col
+        self.morning_start  = morning_start
+        self.morning_end    = morning_end
+        self.noon_start     = noon_start
+        self.noon_end       = noon_end
+        self.evening_start  = evening_start
+        self.evening_end    = evening_end
+        """
+        Note! 
+        You should define a variable as a self.var when it's an instance variable. 
+        Instance variables are variables that belong to an instance of a class, 
+        and they have different values for different instances of the same class.
+        In other words, if you have a class MyClass, and you create two instances of it, obj1 and obj2, 
+        each of these instances will have its own copy of the instance variables defined in the class. 
+        If you modify the value of an instance variable for one instance, 
+        it will not affect the value of the same variable for the other instance.
+        """
 
-    # Clean missing and illegal values
-    df[self.date_time_col] = pd.to_datetime(df[self.date_time_col], errors='coerce')
-    df = df.dropna(subset=[self.date_time_col])
+        # Clean missing and illegal values
+        df[self.date_time_col] = pd.to_datetime(df[self.date_time_col], errors='coerce')
+        df = df.dropna(subset=[self.date_time_col])
 
-    # Insert timeStamp
-    df['timeStamp'] =  df[self.date_time_col].apply(lambda x: x.timestamp())
+        # Insert timeStamp
+        df['timeStamp'] =  df[self.date_time_col].apply(lambda x: x.timestamp())
 
-    # Get the first timestamp as reference point
-    self.first_timestamp = df[self.date_time_col].min()
-    df['relative_time'] = (df[self.date_time_col] - self.first_timestamp).dt.total_seconds()
+        # Get the first timestamp as reference point
+        self.first_timestamp = df[self.date_time_col].min()
+        df['relative_time'] = (df[self.date_time_col] - self.first_timestamp).dt.total_seconds()
 
-    # Split the interval string into quantity and abbreviation
-    quantity = int(interval[:-1])
-    abbreviation = interval[-1]
-    if abbreviation   == 'H':
-        interval_seconds = quantity * 3600
-    elif abbreviation == 'M':
-        interval_seconds = quantity * 60
-    elif abbreviation == 'D':
-        interval_seconds = quantity * 3600 * 24
-    elif abbreviation == 'W':
-        interval_seconds = quantity * 3600 * 24 * 7
-    else:
-        raise ValueError("Invalid interval abbreviation")
+        # Split the interval string into quantity and abbreviation
+        quantity = int(interval[:-1])
+        abbreviation = interval[-1]
+        if abbreviation   == 'H':
+            interval_seconds = quantity * 3600
+        elif abbreviation == 'M':
+            interval_seconds = quantity * 60
+        elif abbreviation == 'D':
+            interval_seconds = quantity * 3600 * 24
+        elif abbreviation == 'W':
+            interval_seconds = quantity * 3600 * 24 * 7
+        else:
+            raise ValueError("Invalid interval abbreviation")
 
-    # Convert the relative time to an integer representing the interval
-    df['relative_time'] = df['relative_time'] // interval_seconds
-    df['relative_time'] = df['relative_time'].astype(int)
+        # Convert the relative time to an integer representing the interval
+        df['relative_time'] = df['relative_time'] // interval_seconds
+        df['relative_time'] = df['relative_time'].astype(int)
 
-    # Extract year, month, day, hour, and weekday
-    df['year']    = df[self.date_time_col].dt.year
-    df['month']   = df[self.date_time_col].dt.month
-    df['dateDay'] = df[self.date_time_col].dt.day
-    df['weekDay'] = df[self.date_time_col].dt.weekday
-    df['nameDay'] = df[self.date_time_col].dt.day_name()
-    df['hour']    = df[self.date_time_col].dt.hour
+        # Extract year, month, day, hour, and weekday
+        df['year']    = df[self.date_time_col].dt.year
+        df['month']   = df[self.date_time_col].dt.month
+        df['dateDay'] = df[self.date_time_col].dt.day
+        df['weekDay'] = df[self.date_time_col].dt.weekday
+        df['nameDay'] = df[self.date_time_col].dt.day_name()
+        df['hour']    = df[self.date_time_col].dt.hour
 
-    # Create a weekend column
-    df['weekend'] = np.where((df['weekDay'] >= is_weekend) & (df['weekDay'] < is_weekend+2), 1, 0)    
-    ### TODO: insert transforme for change the weekend (israel) including the nameDay.
+        # Create a weekend column
+        df['weekend'] = np.where((df['weekDay'] >= is_weekend) & (df['weekDay'] < is_weekend+2), 1, 0)    
+        ### TODO: insert transforme for change the weekend (israel) including the nameDay.
 
-    # Create columns for morning, noon, evening, and night
-    df['morning'] = ((df['hour'] >= morning_start) & (df['hour'] < morning_end)).astype(int)
-    df['noon']    = ((df['hour'] >= noon_start) & (df['hour'] < noon_end)).astype(int)
-    df['evening'] = ((df['hour'] >= evening_start) & (df['hour'] < evening_end)).astype(int)
-    df['night']   = ((df['hour'] < morning_start) | (df['hour'] >= evening_end)).astype(int)
+        # Create columns for morning, noon, evening, and night
+        df['morning'] = ((df['hour'] >= morning_start) & (df['hour'] < morning_end)).astype(int)
+        df['noon']    = ((df['hour'] >= noon_start) & (df['hour'] < noon_end)).astype(int)
+        df['evening'] = ((df['hour'] >= evening_start) & (df['hour'] < evening_end)).astype(int)
+        df['night']   = ((df['hour'] < morning_start) | (df['hour'] >= evening_end)).astype(int)
 
-    # Drop the original date time column
-    df = df.drop(columns=[self.date_time_col])
+        # Drop the original date time column
+        df = df.drop(columns=[self.date_time_col])
 
-    return df
-    # return df[['timeStamp' ,'relative_time','year', 'month', 'dateDay', 'nameDay', 'weekDay', 'weekend', 'hour', 'morning', 'noon', 'evening', 'night']]
+        return df
+        # return df[['timeStamp' ,'relative_time','year', 'month', 'dateDay', 'nameDay', 'weekDay', 'weekend', 'hour', 'morning', 'noon', 'evening', 'night']]
 
     def distance_haversine(self, lat1, lon1, lat2, lon2):
       # Convert latitude and longitude to radians
