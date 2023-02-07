@@ -3,7 +3,7 @@ from _import_alias import *
 def __init__():
     IN_COLAB = False
     PATH = "--"
-    ENCOD = "utf-8"
+#     ENCOD = "utf-8"
     try:
       import google.colab
       IN_COLAB = True
