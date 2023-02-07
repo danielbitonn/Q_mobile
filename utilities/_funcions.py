@@ -1,5 +1,5 @@
-# from utilities import _import_alias
-!python utilities._import_alias.py
+from utilities._import_alias import *
+# !python utilities._import_alias.py
 
 class Environment:
     def __init__(self):   
