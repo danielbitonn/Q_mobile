@@ -1,4 +1,4 @@
-import pandas as pd
+# import pandas as pd
 
 class Environment:
     def __init__(self):   
@@ -15,7 +15,7 @@ class Environment:
 
         self.rawdata = pd.read_csv(f'data/data_for_candidate.csv', parse_dates=['TIME'])
         
-ENV = Environment()
+# ENV = Environment()
 
 class ExplorDataAnaly:
     def __init__(self):
@@ -126,7 +126,8 @@ class ExplorDataAnaly:
       return distance #*1000 # convert to m
 
     
-EDA = ExplorDataAnaly()
+# EDA = ExplorDataAnaly()
+
 ################################################################################
 ################################################################################
 ################################################################################
