@@ -18,9 +18,14 @@ def __init__():
 #             'IN_COLAB': IN_COLAB,
 #             'df': df        
 #             }
-    
+    vars = locals().copy()
+
     with open("variables.pkl", "wb") as f:
-        pickle.dump(locals(), f)
+        vars.pop("f", None)
+        pickle.dump(vars, f)
+    
+#     with open("variables.pkl", "wb") as f:
+#         pickle.dump(locals(), f)
     
 __init__()
 
