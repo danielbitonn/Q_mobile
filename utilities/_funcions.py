@@ -12,11 +12,8 @@ def __initialising__():
     except:
       IN_COLAB = False
       PATH = ""
-    dat={'Name':['Karan','Rohit','Sahil','Aryan'],'Age':[23,22,21,24]}
-    df=pd.DataFrame(dat)
-    
+        
     vars = locals().copy()
-    
     with open("variables.pkl", "wb") as f:
         vars.pop("f", None)
         pickle.dump(vars, f)
