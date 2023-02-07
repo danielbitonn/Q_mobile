@@ -22,7 +22,7 @@ def __init__():
     
     # Save the variables to a file
     with open("variables.pkl", "wb") as f:
-        pickle.dump(loads(), f)
+        pickle.dump(locals(), f)
     
 __init__()
 
