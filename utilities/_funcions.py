@@ -1,17 +1,20 @@
-def __init__(self):
-    self.IN_COLAB = False
-    self.PATH = "--"
-    self.ENCOD = "utf-8"
-    try:
-      import google.colab
-      self.IN_COLAB = True
-      self.PATH = r"/content/Q_mobile/"
-    except:
-      self.IN_COLAB = False
-      self.PATH = ""
-     
-    print('In G-colab environment? ', self.IN_COLAB)
-__init__()
+class q_mobile:
+    def __init__(self):
+        self.IN_COLAB = False
+        self.PATH = "--"
+        self.ENCOD = "utf-8"
+        try:
+          import google.colab
+          self.IN_COLAB = True
+          self.PATH = r"/content/Q_mobile/"
+        except:
+          self.IN_COLAB = False
+          self.PATH = ""
+
+        print('In G-colab environment? ', self.IN_COLAB)
+ 
+q=q_mobile()
+# __init__()
 ################################################################################
 ################################################################################
 ################################################################################
