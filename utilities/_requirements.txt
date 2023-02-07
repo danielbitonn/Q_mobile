@@ -1,49 +1,32 @@
 # Basic packages
-
 numpy
-
 pandas
-
 scipy
 
 
 
 # System
-
 ipython-autotime
-
 watermark
-
 requests
-
 datetime
-
 beeprint
 
 
 
 # Files
-
-xlrd
-
-openpyxl
-
-jellyfish
+#xlrd
+#openpyxl
+#jellyfish
 
 
 
 # EDA
-
 sweetviz
-
 seaborn
-
 matplotlib
-
 plotly
-
 plotly.express
-
 scienceplots
 
 
@@ -54,13 +37,9 @@ scikit-learn
 imblearn
 
 
-
 # NN
-
-openai
-
+#openai
 transformers
-
 nltk
 
 # Updated
