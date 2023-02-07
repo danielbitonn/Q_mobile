@@ -1,7 +1,7 @@
-def __initialising__():
-    import pickle
-    import pandas as pd
-    
+import pickle
+import pandas as pd
+
+def __initialising__():   
     IN_COLAB = False
     PATH = "--"
     ENCOD = "utf-8"
