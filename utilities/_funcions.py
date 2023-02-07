@@ -1,7 +1,7 @@
 from utilities._import_alias import *
 # import pickle
 
-class DataStore:
+class Environment:
     def __init__(self):   
         self.IN_COLAB = False
         self.PATH = "--"
@@ -15,18 +15,8 @@ class DataStore:
           self.PATH = ""
 
         self.rawdata = pd.read_csv(f'data/data_for_candidate.csv')
-
-        self.vars = locals().copy()    
-        with open("variables.pkl", "wb") as f:
-            self.vars.pop("f", None)
-            pickle.dump(self.vars, f)
-
-#         vars = locals().copy()    
-#         vars_to_pickle = {k: v for k, v in vars.items() if not k.startswith("_")}
-#         with open("variables.pkl", "wb") as f:
-#             pickle.dump(vars_to_pickle, f)
         
-ds = DataStore()
+ENV = Environment()
 # with open("variables.pkl", "wb") as f:
 #     pickle.dump(ds, f)
 # __initialising__()
