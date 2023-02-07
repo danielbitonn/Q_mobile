@@ -19,7 +19,7 @@ class Environment:
 ENV = Environment()
 
 class ExplorDataAnaly:
-    def __init__():
+    def __init__(self):
         pass
     def date_time_handling(self, df, date_time_col , 
                                        interval='1H', is_weekend=4,
