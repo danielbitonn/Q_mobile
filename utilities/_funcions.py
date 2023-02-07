@@ -1,4 +1,5 @@
 from _import_alias import *
+import pickle
 
 def __init__():
     IN_COLAB = False
@@ -16,12 +17,16 @@ def __init__():
     
     vars = {
             'IN_COLAB': IN_COLAB,
-            'df': df.items()        
+            'df': df        
             }
     print('In G-colab environment? ', IN_COLAB, vars)
-    print(vars)
+    
+    # Save the variables to a file
+    with open("variables.pkl", "wb") as f:
+        pickle.dump(vars, f)
     
 __init__()
+
 ################################################################################
 ################################################################################
 ################################################################################
