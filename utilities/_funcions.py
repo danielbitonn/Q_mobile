@@ -14,7 +14,7 @@ class Environment:
           self.IN_COLAB = False
           self.PATH = ""
 
-        self.rawdata = pd.read_csv(f'data/data_for_candidate.csv')
+        self.rawdata = pd.read_csv(f'data/data_for_candidate.csv', parse_dates=['TIME'])
         
 ENV = Environment()
 # with open("variables.pkl", "wb") as f:
