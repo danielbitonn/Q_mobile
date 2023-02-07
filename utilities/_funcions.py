@@ -16,10 +16,10 @@ class DataStore:
 
         self.rawdata = pd.read_csv(f'data/data_for_candidate.csv')
 
-    #     vars = locals().copy()    
-    #     with open("variables.pkl", "wb") as f:
-    #         vars.pop("f", None)
-    #         pickle.dump(vars, f)
+        self.vars = locals().copy()    
+        with open("variables.pkl", "wb") as f:
+            self.vars.pop("f", None)
+            pickle.dump(self.vars, f)
 
 #         vars = locals().copy()    
 #         vars_to_pickle = {k: v for k, v in vars.items() if not k.startswith("_")}
@@ -27,8 +27,8 @@ class DataStore:
 #             pickle.dump(vars_to_pickle, f)
         
 ds = DataStore()
-with open("variables.pkl", "wb") as f:
-    pickle.dump(ds, f)
+# with open("variables.pkl", "wb") as f:
+#     pickle.dump(ds, f)
 # __initialising__()
 
 ################################################################################
