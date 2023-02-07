@@ -126,7 +126,7 @@ class ExplorDataAnaly:
       return distance #*1000 # convert to m
 
     
-    def func_mapping_by_categorical_feat(df,  cat_feat, sub_cat_feat='', rad='', coord_list=['GEO_LAT', 'GEO_LON']):
+    def func_mapping_by_categorical_feat(self, df,  cat_feat, sub_cat_feat='', rad='', coord_list=['GEO_LAT', 'GEO_LON']):
       if sub_cat_feat != '':
         df = df[df[cat_feat]==sub_cat_feat].copy()
       else:
