@@ -21,7 +21,7 @@ def __initialising__():
 #         pickle.dump(vars, f)
 
     vars_to_pickle = {k: v for k, v in locals().items() if not k.startswith("_")}
-        with open("variables.pkl", "wb") as f:
+    with open("variables.pkl", "wb") as f:
         pickle.dump(vars_to_pickle, f)
         
 __initialising__()
