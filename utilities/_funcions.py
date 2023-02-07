@@ -1,17 +1,17 @@
-def __init__():
-    IN_COLAB = False
-    PATH = "--"
-    ENCOD = "utf-8"
+def __init__(self):
+    self.IN_COLAB = False
+    self.PATH = "--"
+    self.ENCOD = "utf-8"
     try:
       import google.colab
-      IN_COLAB = True
-      PATH = r"/content/Q_mobile/"
+      self.IN_COLAB = True
+      self.PATH = r"/content/Q_mobile/"
     except:
-      IN_COLAB = False
-      PATH = ""
+      self.IN_COLAB = False
+      self.PATH = ""
      
-    print('In G-colab environment? ', IN_COLAB)
-__init__()
+    print('In G-colab environment? ', self.IN_COLAB)
+__init__(self)
 ################################################################################
 ################################################################################
 ################################################################################
