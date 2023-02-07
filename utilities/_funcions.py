@@ -1,5 +1,5 @@
 import pandas as pd
-
+import folium
 class Environment:
     def __init__(self):   
         self.IN_COLAB = False
