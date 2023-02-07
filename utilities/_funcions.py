@@ -1,4 +1,4 @@
-from utilities._import_alias import *
+from _import_alias import *
 
 def __init__():
     IN_COLAB = False
