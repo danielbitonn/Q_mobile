@@ -1,4 +1,4 @@
-import _import_alias
+import utilities._import_alias
 
 # import pandas as pd
 # import folium
