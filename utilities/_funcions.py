@@ -1,5 +1,10 @@
-import pandas as pd
-import folium
+import _import_alias
+
+# import pandas as pd
+# import folium
+# import yaml
+# from yaml.loader import *
+
 class Environment:
     def __init__(self):   
         self.IN_COLAB = False
@@ -12,10 +17,23 @@ class Environment:
         except:
           self.IN_COLAB = False
           self.PATH = ""
+        
+        with open('utilities\_conf.yaml', "r") as stream:
+            config = yaml.safe_load(stream)
+        for key, value in config.items():
+            os.environ[key] = str(value)
+
 
         self.rawdata = pd.read_csv(f'data/data_for_candidate.csv', parse_dates=['TIME'])
+    
+    def func_get_conf(self, key_data):
+        try:
+            return yaml.load(open("utilities\_conf.yaml", 'r'), Loader=FullLoader)[key_data]
+        except yaml.YAMLError as e:
+            logging.error(f"_conf.yaml: {e}")
+            raise Exception
         
-# ENV = Environment()
+ENV = Environment()
 
 class ExplorDataAnaly:
     def __init__(self):
@@ -207,15 +225,14 @@ class ExplorDataAnaly:
 ################################################################################
 ################################################################################
 ################################################################################
-import yaml
-from yaml.loader import *
 
-def func_get_conf(key_data):
-    try:
-        return yaml.load(open("utilities\_conf.yaml", 'r'), Loader=FullLoader)[key_data]
-    except yaml.YAMLError as e:
-        logging.error(f"_conf.yaml: {e}")
-        raise Exception
+
+# def func_get_conf(key_data):
+#     try:
+#         return yaml.load(open("utilities\_conf.yaml", 'r'), Loader=FullLoader)[key_data]
+#     except yaml.YAMLError as e:
+#         logging.error(f"_conf.yaml: {e}")
+#         raise Exception
 
 ################################################################################
 ################################################################################
