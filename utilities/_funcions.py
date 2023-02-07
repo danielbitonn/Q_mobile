@@ -1,5 +1,5 @@
 from utilities._import_alias import *
-import pickle
+# import pickle
 
 def __initialising__():   
     IN_COLAB = False
@@ -14,12 +14,16 @@ def __initialising__():
       PATH = ""
        
     rawdata = pd.read_csv(f'data/data_for_candidate.csv')
-    
-    vars = locals().copy()
-    with open("variables.pkl", "wb") as f:
-        vars.pop("f", None)
-        pickle.dump(vars, f)
-    
+
+#     vars = locals().copy()    
+#     with open("variables.pkl", "wb") as f:
+#         vars.pop("f", None)
+#         pickle.dump(vars, f)
+
+    vars_to_pickle = {k: v for k, v in locals().items() if not k.startswith("_")}
+        with open("variables.pkl", "wb") as f:
+        pickle.dump(vars_to_pickle, f)
+        
 __initialising__()
 
 ################################################################################
