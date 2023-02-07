@@ -172,23 +172,23 @@ class ExplorDataAnaly:
 
 
         if rad_flag:
-        for lat, lon, feat, rad in zip(df[coord_list[0]], df[coord_list[1]], df[cat_feat], df[rad]):
-            folium.CircleMarker(
-                                location=[lat, lon],
-                                radius=rad,
-                                color=feat_colors[feat],
-                                fill=True,
-                                fill_color=feat_colors[feat]
-                            ).add_to(m)
+            for lat, lon, feat, rad in zip(df[coord_list[0]], df[coord_list[1]], df[cat_feat], df[rad]):
+                folium.CircleMarker(
+                                    location=[lat, lon],
+                                    radius=rad,
+                                    color=feat_colors[feat],
+                                    fill=True,
+                                    fill_color=feat_colors[feat]
+                                ).add_to(m)
         else:
-        for lat, lon, feat in zip(df[coord_list[0]], df[coord_list[1]], df[cat_feat]):
-            folium.CircleMarker(
-                                location=[lat, lon],
-                                radius=1,
-                                color=feat_colors[feat],
-                                fill=True,
-                                fill_color=feat_colors[feat]
-                            ).add_to(m)
+            for lat, lon, feat in zip(df[coord_list[0]], df[coord_list[1]], df[cat_feat]):
+                folium.CircleMarker(
+                                    location=[lat, lon],
+                                    radius=1,
+                                    color=feat_colors[feat],
+                                    fill=True,
+                                    fill_color=feat_colors[feat]
+                                ).add_to(m)
 
         # Add a legend to the map for only the countries that have points
         legend_html = '<div style="position: fixed; bottom: 50px; left: 50px; width: 150px; height: auto; border:2px solid grey; z-index:9999; font-size:14px; padding: 10px;">'
