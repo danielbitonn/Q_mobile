@@ -12,7 +12,7 @@ def __init__():
 
     print('In G-colab environment? ', IN_COLAB)
     R=5
-    k=3
+    **k=3
     print(R)
     
 __init__()
