@@ -16,7 +16,7 @@ def __init__():
     
     vars = {
             'IN_COLAB': IN_COLAB,
-            'df': df        
+            'df': df.items()        
             }
     print('In G-colab environment? ', IN_COLAB, vars)
     print(vars)
