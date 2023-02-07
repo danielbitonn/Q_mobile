@@ -1,3 +1,16 @@
+def __init__():
+    IN_COLAB = False
+    PATH = "--"
+    ENCOD = "utf-8'
+    try:
+      import google.colab
+      IN_COLAB = True
+      PATH = r"/content/Q_mobile/"
+    except:
+      IN_COLAB = False
+      PATH = ""
+     
+    print('In G-colab environment? ', IN_COLAB)
 ################################################################################
 ################################################################################
 ################################################################################
