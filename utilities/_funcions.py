@@ -1,31 +1,35 @@
-# from utilities._import_alias import *
-import pickle
+from utilities._import_alias import *
+# import pickle
 
-def __initialising__():   
-    IN_COLAB = False
-    PATH = "--"
-    ENCOD = "utf-8"
-    try:
-      import google.colab
-      IN_COLAB = True
-      PATH = r"/content/Q_mobile/"
-    except:
-      IN_COLAB = False
-      PATH = ""
-       
-#     rawdata = pd.read_csv(f'data/data_for_candidate.csv')
+class DataStore:
+    def __init__(self):   
+        self.IN_COLAB = False
+        self.PATH = "--"
+        self.ENCOD = "utf-8"
+        try:
+          import google.colab
+          self.IN_COLAB = True
+          self.PATH = r"/content/Q_mobile/"
+        except:
+          self.IN_COLAB = False
+          self.PATH = ""
 
-#     vars = locals().copy()    
-#     with open("variables.pkl", "wb") as f:
-#         vars.pop("f", None)
-#         pickle.dump(vars, f)
+        self.rawdata = pd.read_csv(f'data/data_for_candidate.csv')
+
+    #     vars = locals().copy()    
+    #     with open("variables.pkl", "wb") as f:
+    #         vars.pop("f", None)
+    #         pickle.dump(vars, f)
+
+#         vars = locals().copy()    
+#         vars_to_pickle = {k: v for k, v in vars.items() if not k.startswith("_")}
+#         with open("variables.pkl", "wb") as f:
+#             pickle.dump(vars_to_pickle, f)
         
-    vars = locals().copy()    
-    vars_to_pickle = {k: v for k, v in vars.items() if not k.startswith("_")}
-    with open("variables.pkl", "wb") as f:
-        pickle.dump(vars_to_pickle, f)
-        
-__initialising__()
+ds = DataStore()
+with open("variables.pkl", "wb") as f:
+    pickle.dump(data_store, f)
+# __initialising__()
 
 ################################################################################
 ################################################################################
