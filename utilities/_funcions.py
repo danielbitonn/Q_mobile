@@ -12,7 +12,7 @@ def __init__():
       IN_COLAB = False
       PATH = ""
     dat={'Name':['Karan','Rohit','Sahil','Aryan'],'Age':[23,22,21,24]}
-    df=pd.dataframe(dat)
+    df=pd.DataFrame(dat)
     
     vars = {
             'IN_COLAB': IN_COLAB,
