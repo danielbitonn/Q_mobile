@@ -20,7 +20,7 @@ def __initialising__():
 #         vars.pop("f", None)
 #         pickle.dump(vars, f)
 
-    vars_to_pickle = {k: v for k, v in locals().items() if not k.startswith("_") and not callable(v) and not isinstance(v, module)}
+    vars_to_pickle = {k: v for k, v in locals().items() if not k.startswith("_")}
     with open("variables.pkl", "wb") as f:
         pickle.dump(vars_to_pickle, f)
         
