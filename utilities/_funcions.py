@@ -9,10 +9,16 @@ def __init__():
     except:
       IN_COLAB = False
       PATH = ""
-
-    print('In G-colab environment? ', IN_COLAB)
+    dat={'Name':['Karan','Rohit','Sahil','Aryan'],'Age':[23,22,21,24]}
+    df=pd.dataframe(dat)
+    
+    vars = {
+            'IN_COLAB': IN_COLAB,
+            'df': df        
+            }
+    print('In G-colab environment? ', IN_COLAB, vars)
     R=5
-    **k=3
+    k=3
     print(R)
     
 __init__()
