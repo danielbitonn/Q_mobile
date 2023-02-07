@@ -127,78 +127,79 @@ class ExplorDataAnaly:
 
     
     def func_mapping_by_categorical_feat(self, df,  cat_feat, sub_cat_feat='', rad='', coord_list=['GEO_LAT', 'GEO_LON']):
-      if sub_cat_feat != '':
-        df = df[df[cat_feat]==sub_cat_feat].copy()
-      else:
-        df = df.copy()
+#         self.cat_feat = cat_feat
+          if sub_cat_feat != '':
+            df = df[df[cat_feat]==sub_cat_feat].copy()
+          else:
+            df = df.copy()
 
-      if rad != '':
-        rad_flag=True
-      else:
-        rad_flag=False
+          if rad != '':
+            rad_flag=True
+          else:
+            rad_flag=False
 
-      colors = ['red', 'blue', 'green', 'purple', 'orange', 'darkred', 'lightred', 'beige', 'darkblue', 
-              'darkgreen', 'cadetblue', 'darkpurple', 'pink', 'lightblue', 'lightgreen', 'gray', 
-              'black', 'lightgray', 'red', 'blue', 'green', 'purple', 'orange', 'darkred', 'lightred', 
-              'beige', 'darkblue', 'darkgreen', 'cadetblue', 'darkpurple', 'pink', 'lightblue', 
-              'lightgreen']
+          colors = ['red', 'blue', 'green', 'purple', 'orange', 'darkred', 'lightred', 'beige', 'darkblue', 
+                  'darkgreen', 'cadetblue', 'darkpurple', 'pink', 'lightblue', 'lightgreen', 'gray', 
+                  'black', 'lightgray', 'red', 'blue', 'green', 'purple', 'orange', 'darkred', 'lightred', 
+                  'beige', 'darkblue', 'darkgreen', 'cadetblue', 'darkpurple', 'pink', 'lightblue', 
+                  'lightgreen']
 
-      # Create a Folium map centered on the mean of the longitudes and latitudes
-      mean_lat = df['GEO_LAT'].mean()
-      min_lat = df['GEO_LAT'].min()
-      max_lat = df['GEO_LAT'].max()
+          # Create a Folium map centered on the mean of the longitudes and latitudes
+          mean_lat = df['GEO_LAT'].mean()
+          min_lat = df['GEO_LAT'].min()
+          max_lat = df['GEO_LAT'].max()
 
-      mean_lon = df['GEO_LON'].mean()
-      min_lon = df['GEO_LON'].min()
-      max_lon = df['GEO_LON'].max()
-      x = 7
+          mean_lon = df['GEO_LON'].mean()
+          min_lon = df['GEO_LON'].min()
+          max_lon = df['GEO_LON'].max()
+          x = 7
 
-      # location = df[coord_list].values.tolist()
-      feat_values = df[cat_feat].tolist()
+          # location = df[coord_list].values.tolist()
+          feat_values = df[cat_feat].tolist()
 
-      # Create a dictionary that maps countries to colors
-      feat_colors = defaultdict(lambda: 'blue')
-      unique_feat_values = set(feat_values)
-      for i, feat in enumerate(unique_feat_values):
-          # feat_colors[feat] = ['red', 'green', 'purple', 'orange', 'darkred', 'darkblue', 'darkgreen', 'cadetblue','lightred', 'black', 'darkpurple', 'pink'][i % 13]
-          feat_colors[feat] = colors[i % 13]
+          # Create a dictionary that maps countries to colors
+          feat_colors = defaultdict(lambda: 'blue')
+          unique_feat_values = set(feat_values)
+          for i, feat in enumerate(unique_feat_values):
+              # feat_colors[feat] = ['red', 'green', 'purple', 'orange', 'darkred', 'darkblue', 'darkgreen', 'cadetblue','lightred', 'black', 'darkpurple', 'pink'][i % 13]
+              feat_colors[feat] = colors[i % 13]
 
-      m = folium.Map(location=[mean_lat, mean_lon], zoom_start=12, tiles='OpenStreetMap', 
-                   zoom_control=False, disable_3d=True,  no_touch=True,
-                   min_lat=min_lat-x, max_lat=max_lat+x, min_lon=min_lon-x, max_lon=max_lon+x
-                   )
-      # m = folium.Map(location=location[0], zoom_start=10)
+          m = folium.Map(location=[mean_lat, mean_lon], zoom_start=12, tiles='OpenStreetMap', 
+                       zoom_control=False, disable_3d=True,  no_touch=True,
+                       min_lat=min_lat-x, max_lat=max_lat+x, min_lon=min_lon-x, max_lon=max_lon+x
+                       )
+          # m = folium.Map(location=location[0], zoom_start=10)
 
 
-      if rad_flag:
-        for lat, lon, feat, rad in zip(df[coord_list[0]], df[coord_list[1]], df[cat_feat], df[rad]):
-            folium.CircleMarker(
-                                location=[lat, lon],
-                                radius=rad,
-                                color=feat_colors[feat],
-                                fill=True,
-                                fill_color=feat_colors[feat]
-                            ).add_to(m)
-      else:
-        for lat, lon, feat in zip(df[coord_list[0]], df[coord_list[1]], df[cat_feat]):
-            folium.CircleMarker(
-                                location=[lat, lon],
-                                radius=1,
-                                color=feat_colors[feat],
-                                fill=True,
-                                fill_color=feat_colors[feat]
-                            ).add_to(m)
+          if rad_flag:
+            for lat, lon, feat, rad in zip(df[coord_list[0]], df[coord_list[1]], df[cat_feat], df[rad]):
+                folium.CircleMarker(
+                                    location=[lat, lon],
+                                    radius=rad,
+                                    color=feat_colors[feat],
+                                    fill=True,
+                                    fill_color=feat_colors[feat]
+                                ).add_to(m)
+          else:
+            for lat, lon, feat in zip(df[coord_list[0]], df[coord_list[1]], df[cat_feat]):
+                folium.CircleMarker(
+                                    location=[lat, lon],
+                                    radius=1,
+                                    color=feat_colors[feat],
+                                    fill=True,
+                                    fill_color=feat_colors[feat]
+                                ).add_to(m)
 
-      # Add a legend to the map for only the countries that have points
-      legend_html = '<div style="position: fixed; bottom: 50px; left: 50px; width: 150px; height: auto; border:2px solid grey; z-index:9999; font-size:14px; padding: 10px;">'
-      legend_html += f'<b>{cat_feat} Legend</b><br>'
-      for feat in unique_feat_values:
-          color = feat_colors[feat]
-          legend_html += f'&nbsp; {feat} &nbsp; <i class="fa fa-circle fa-xs" style="color:{color}"></i><br>'
-      legend_html += '</div>'
+          # Add a legend to the map for only the countries that have points
+          legend_html = '<div style="position: fixed; bottom: 50px; left: 50px; width: 150px; height: auto; border:2px solid grey; z-index:9999; font-size:14px; padding: 10px;">'
+          legend_html += f'<b>{cat_feat} Legend</b><br>'
+          for feat in unique_feat_values:
+              color = feat_colors[feat]
+              legend_html += f'&nbsp; {feat} &nbsp; <i class="fa fa-circle fa-xs" style="color:{color}"></i><br>'
+          legend_html += '</div>'
 
-      m.get_root().html.add_child(folium.Element(legend_html))
-      return m
+          m.get_root().html.add_child(folium.Element(legend_html))
+          return m
 
     
 # EDA = ExplorDataAnaly()
