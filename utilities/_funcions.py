@@ -1,4 +1,4 @@
-import utilities._import_alias
+from utilities import _import_alias
 
 class Environment:
     def __init__(self):   
