@@ -56,7 +56,8 @@ from transformers import GPT2Config, GPT2Model, GPT2Tokenizer, GPT2TokenizerFast
 from typing import Set
 
 ### Updates
-from tqdm.autonotebook import tqdm as notebook_tqdm
+# from tqdm.autonotebook import tqdm as notebook_tqdm
+from tqdm import *
 import haversine
 import folium
 from collections import defaultdict
