@@ -1,6 +1,6 @@
 # import pickle
 # import pandas as pd
-from ../utilities._import_alias import *
+from utilities._import_alias import *
 
 def __initialising__():   
     IN_COLAB = False
