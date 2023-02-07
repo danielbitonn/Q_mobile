@@ -3,7 +3,7 @@ from _import_alias import *
 def __init__():
     IN_COLAB = False
     PATH = "--"
-#     ENCOD = "utf-8"
+    ENCOD = "utf-8"
     try:
       import google.colab
       IN_COLAB = True
@@ -14,10 +14,10 @@ def __init__():
     dat={'Name':['Karan','Rohit','Sahil','Aryan'],'Age':[23,22,21,24]}
     df=pd.DataFrame(dat)
     
-    vars = {
-            'IN_COLAB': IN_COLAB,
-            'df': df        
-            }
+#     vars = {
+#             'IN_COLAB': IN_COLAB,
+#             'df': df        
+#             }
     
     with open("variables.pkl", "wb") as f:
         pickle.dump(locals(), f)
