@@ -1,5 +1,6 @@
-import pickle
-import pandas as pd
+# import pickle
+# import pandas as pd
+from ../utilities._import_alias import *
 
 def __initialising__():   
     IN_COLAB = False
@@ -12,7 +13,9 @@ def __initialising__():
     except:
       IN_COLAB = False
       PATH = ""
-        
+       
+    rawdata = pd.read_csv(f'../data/data_for_candidate.csv')
+    
     vars = locals().copy()
     with open("variables.pkl", "wb") as f:
         vars.pop("f", None)
