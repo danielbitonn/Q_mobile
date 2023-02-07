@@ -56,7 +56,7 @@ from typing import Set
 
 ### Updates
 from tqdm import *
-# from tqdm.autonotebook import tqdm as notebook_tqdm
+from tqdm.autonotebook import tqdm as notebook_tqdm
 import haversine
 import folium
 from collections import defaultdict
