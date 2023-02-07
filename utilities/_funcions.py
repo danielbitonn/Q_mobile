@@ -28,7 +28,7 @@ class DataStore:
         
 ds = DataStore()
 with open("variables.pkl", "wb") as f:
-    pickle.dump(data_store, f)
+    pickle.dump(ds, f)
 # __initialising__()
 
 ################################################################################
