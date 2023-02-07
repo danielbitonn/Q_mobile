@@ -1,6 +1,6 @@
 from _import_alias import *
 
-def __init__():
+def __initialising__():
     IN_COLAB = False
     PATH = "--"
     ENCOD = "utf-8"
@@ -14,20 +14,13 @@ def __init__():
     dat={'Name':['Karan','Rohit','Sahil','Aryan'],'Age':[23,22,21,24]}
     df=pd.DataFrame(dat)
     
-#     vars = {
-#             'IN_COLAB': IN_COLAB,
-#             'df': df        
-#             }
     vars = locals().copy()
-
+    
     with open("variables.pkl", "wb") as f:
         vars.pop("f", None)
         pickle.dump(vars, f)
     
-#     with open("variables.pkl", "wb") as f:
-#         pickle.dump(locals(), f)
-    
-__init__()
+__initialising__()
 
 ################################################################################
 ################################################################################
