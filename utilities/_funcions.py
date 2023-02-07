@@ -14,7 +14,7 @@ def __initialising__():
       IN_COLAB = False
       PATH = ""
        
-    rawdata = pd.read_csv(f'../data/data_for_candidate.csv')
+    rawdata = pd.read_csv(f'data/data_for_candidate.csv')
     
     vars = locals().copy()
     with open("variables.pkl", "wb") as f:
